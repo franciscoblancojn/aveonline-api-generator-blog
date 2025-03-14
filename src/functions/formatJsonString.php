@@ -1,12 +1,14 @@
 <?php
 function AVAGB_formatJsonString($inputString) {
     // Eliminar saltos de línea y tabulaciones innecesarias
-    $inputString = str_replace(["\n", "\t","\r","\\n","```json","```"], "", $inputString);
+    $inputString = str_replace(["\n", "\t","\r","\\n"], "", $inputString);
     $inputString = str_replace(['\\"'], '"', $inputString);
 
     // Extraer el contenido JSON dentro de ```json ... ```
-    if (preg_match('/content:"(.*?)"/s', $inputString, $matches)) {
+    if (preg_match('/content:"(.*?)"\s*,\s*titleSlug/s', $inputString, $matches)) {
         $jsonContent = trim($matches[1]);
+        $jsonContent = str_replace(["```json"], "", $jsonContent);
+        $jsonContent = str_replace(["```"], "", $jsonContent);
     } else {
         throw new Exception("Error: No se encontró contenido JSON válido.");
     }
@@ -18,6 +20,7 @@ function AVAGB_formatJsonString($inputString) {
     $titleSlug = $titleMatch[1] ?? "";
     $metaDescription = $metaMatch[1] ?? "";
 
+    // var_dump($jsonContent);
     // Eliminar barras invertidas innecesarias
     // $jsonContent = stripslashes($jsonContent);
     $decodedJson = json_decode($jsonContent, true);
