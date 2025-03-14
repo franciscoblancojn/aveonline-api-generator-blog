@@ -6,16 +6,15 @@ function AVAGB_createBlogElementor($data) {
     if (!$data || empty($data['content']) || empty($data['titleSlug']) || empty($data['metadescription'])) {
         throw new Exception('El JSON proporcionado no es válido.');
     }
-    
     $post_id = wp_insert_post([
-        'post_title'   => wp_strip_all_tags($data['titleSlug']),
+        'post_title'   => sanitize_text_field(wp_strip_all_tags(AVAGB_removeEmojis($data['titleSlug']))),
         'post_content' => '',
         'post_status'  => 'draft',
         'post_type'    => 'post'
     ]);
     
     if (is_wp_error($post_id)) {
-        return $post_id;
+        throw new Exception("Error: No se crear el post.");
     }
     
     update_post_meta($post_id, '_yoast_wpseo_metadesc', $data['metadescription']);
