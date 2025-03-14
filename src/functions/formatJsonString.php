@@ -1,11 +1,11 @@
 <?php
 function AVAGB_formatJsonString($inputString) {
     // Eliminar saltos de línea y tabulaciones innecesarias
-    $inputString = str_replace(["\n", "\t","\r","\\n"], "", $inputString);
+    $inputString = str_replace(["\n", "\t","\r","\\n","```json","```"], "", $inputString);
     $inputString = str_replace(['\\"'], '"', $inputString);
 
     // Extraer el contenido JSON dentro de ```json ... ```
-    if (preg_match('/content:"```json(.*?)```"/s', $inputString, $matches)) {
+    if (preg_match('/content:"(.*?)"/s', $inputString, $matches)) {
         $jsonContent = trim($matches[1]);
     } else {
         throw new Exception("Error: No se encontró contenido JSON válido.");
