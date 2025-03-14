@@ -16,6 +16,7 @@ if (!function_exists( 'is_plugin_active' ))
 
 //AVAGB_
 define("AVAGB_KEY",'AVAGB');
+define("AVAGB_RUTE",'avagb');
 define("AVAGB_SLUG",'aveonline-api-generator-blog');
 define("AVAGB_LOG",false);
 define("AVAGB_DIR",plugin_dir_path( __FILE__ ));
@@ -74,3 +75,4 @@ github_updater_plugin_wordpress([
 ]);
 
 
+require_once AVAGB_DIR . 'src/_index.php';
