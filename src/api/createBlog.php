@@ -8,10 +8,15 @@ function AVAGB_router_create_blog(WP_REST_Request $request) {
         $data = $request->get_body();
         // var_dump($data);
         $json = AVAGB_formatJsonString($data);
+        $blog_id = AVAGB_createBlogElementor($json);
         echo wp_json_encode(array(
             "status" => 200,
             // "data" => $data,
-            "json" => $json,
+            // "json" => $json,
+            "blog_id" => $blog_id,
+            "blog_url" => admin_url("post.php?post=$blog_id&action=elementor")
+
+            // "ssss"=>json_decode(get_post_meta(471, '_elementor_data',true),true)
         ));
     } catch (Exception $e) {
         echo wp_json_encode(array(
