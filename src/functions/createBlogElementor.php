@@ -24,6 +24,7 @@ function AVAGB_createBlogElementor($data) {
     foreach ($data['content'] as $block) {
         $element = [];
         
+        $tag = $block['type'];
         switch ($block['type']) {
             case 'h1':
             case 'h2':
@@ -34,10 +35,9 @@ function AVAGB_createBlogElementor($data) {
                 $element = [
                     'id' => uniqid(),
                     'elType' => 'widget',
-                    'widgetType' => 'heading',
+                    'widgetType' => 'text-editor',
                     'settings' => [
-                        'title' => $block['content'],
-                        'html_tag' => $block['type']
+                        'editor' => "<$tag>".$block['content']."</$tag>"
                     ]
                 ];
                 break;
