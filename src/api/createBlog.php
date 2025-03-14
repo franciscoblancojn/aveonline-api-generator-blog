@@ -21,7 +21,7 @@ function AVAGB_router_create_blog(WP_REST_Request $request) {
     } catch (Exception $e) {
         echo wp_json_encode(array(
             "status" => 400,
-            "data" => $e->getMessage()
+            "data" => $e->getMessage().""
         ));
     }
 }

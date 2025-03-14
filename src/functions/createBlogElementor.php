@@ -1,9 +1,10 @@
 <?php
 function AVAGB_createBlogElementor($data) {
     // $data = json_decode($json_data, true);
+    // var_dump(json_encode($data));
     
     if (!$data || empty($data['content']) || empty($data['titleSlug']) || empty($data['metadescription'])) {
-        return new WP_Error('invalid_data', 'El JSON proporcionado no es válido.');
+        throw new Exception('El JSON proporcionado no es válido.');
     }
     
     $post_id = wp_insert_post([
@@ -55,7 +56,7 @@ function AVAGB_createBlogElementor($data) {
             
             case 'ul':
             case 'ol':
-                if (!empty($block['list'])) {
+                if (is_array($block['list']) && !empty($block['list'])) {
                     $list_tag = $block['type'];
                     $element = [
                         'id' => uniqid(),
