@@ -1,8 +1,7 @@
 <?php
-function formatJsonString($inputString) {
+function AVAGB_formatJsonString($inputString) {
     // Decodificar caracteres de escape y eliminar los delimitadores innecesarios
-    $inputString = str_replace(["\n", "\t"], "", $inputString);
-    
+    $inputString = str_replace(["\n", "\t","\\n"], "", $inputString);
     // Extraer el contenido JSON dentro de ```json ... ```
     if (preg_match('/content:`{3}json(.*?)`{3},/s', $inputString, $matches)) {
         $jsonContent = trim($matches[1]);
@@ -10,6 +9,7 @@ function formatJsonString($inputString) {
         return "Error: No se encontró contenido JSON válido.";
     }
     
+    var_dump($jsonContent);
     // Extraer el titleSlug y metadescription
     preg_match('/titleSlug:(.*?),\n/s', $inputString, $titleMatch);
     preg_match('/metadescription:(.*?)\n?}/s', $inputString, $metaMatch);

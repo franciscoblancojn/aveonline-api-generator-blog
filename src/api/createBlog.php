@@ -3,13 +3,15 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 function AVAGB_router_create_blog(WP_REST_Request $request) {
-    $data = $request->get_body();
-    header('Content-Type: application/json; charset=utf-8');
     try {
-
+        header('Content-Type: application/json; charset=utf-8');
+        $data = $request->get_body();
+        // var_dump($data);
+        $json = AVAGB_formatJsonString($data);
         echo wp_json_encode(array(
             "status" => 200,
-            "data" => $data,
+            // "data" => $data,
+            "json" => $json,
         ));
     } catch (Exception $e) {
         echo wp_json_encode(array(
