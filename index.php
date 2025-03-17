@@ -3,7 +3,7 @@
 Plugin Name: Aveonline Api Generator Blog
 Plugin URI: https://github.com/franciscoblancojn/aveonline-api-generator-blog
 Description: Plugin que genera endpoint para generar Blog.
-Version: 1.0.5
+Version: 1.0.6
 Author: franciscoblancojn
 Author URI: https://franciscoblanco.vercel.app/
 License: GPL2+
