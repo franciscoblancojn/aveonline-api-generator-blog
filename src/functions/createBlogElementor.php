@@ -103,7 +103,7 @@ function AVAGB_createBlogElementor($data) {
         "settings"=> [],
         "isInner"=> false,
         "elements"=>$elementor_data
-    ]]));
+    ]],JSON_UNESCAPED_UNICODE));
     
     return $post_id;
 }
