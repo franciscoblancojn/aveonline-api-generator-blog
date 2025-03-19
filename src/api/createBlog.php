@@ -16,7 +16,7 @@ function AVAGB_router_create_blog(WP_REST_Request $request) {
             "blog_id" => $blog_id,
             "blog_url" => admin_url("post.php?post=$blog_id&action=elementor"),
 
-            // "ssss"=>json_decode(get_post_meta(497, '_elementor_data',true),true)
+            // "ssss"=>json_decode(get_post_meta(500, '_elementor_data',true),true)
         ));
     } catch (Exception $e) {
         echo wp_json_encode(array(

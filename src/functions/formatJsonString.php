@@ -4,6 +4,7 @@ function AVAGB_formatJsonString($inputString) {
     $inputString = str_replace(["\n", "\t","\r","\\n"], "", $inputString);
     $inputString = str_replace(['\\"'], '"', $inputString);
     $inputString = str_replace(['""'], '"', $inputString);
+    $inputString = str_replace("\\", ' ', $inputString);
 
 
     // Extraer el contenido JSON dentro de ```json ... ```
