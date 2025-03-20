@@ -116,5 +116,6 @@ function AVAGB_createBlogElementor($data) {
         "elements"=>$elementor_data
     ]],JSON_UNESCAPED_UNICODE));
     
+    update_post_meta($post_id, '_wp_page_template', 'elementor_theme');
     return $post_id;
 }
