@@ -96,7 +96,18 @@ function AVAGB_createBlogElementor($data) {
             $elementor_data[] = $element;
         }
     }
-    
+    $category = get_term_by('name', $data['category'], 'category');
+    if ($category) {
+        // Asignar la categoría al post
+        wp_set_post_terms($post_id, [$category->term_id], 'category');
+    } else {
+        // Crear la categoría si no existe
+        $new_category = wp_insert_term($data['category'], 'category');
+
+        if (!is_wp_error($new_category)) {
+            wp_set_post_terms($post_id, [$new_category['term_id']], 'category');
+        }
+    }
     update_post_meta($post_id, '_elementor_data', json_encode([[
         'id' => uniqid(),
         "elType"=> "container",

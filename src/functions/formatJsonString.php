@@ -21,8 +21,10 @@ function AVAGB_formatJsonString($inputString) {
     // Extraer titleSlug y metadescription
     preg_match('/titleSlug:"(.*?)"/s', $inputString, $titleMatch);
     preg_match('/metadescription:"(.*?)"/s', $inputString, $metaMatch);
+    preg_match('/categoria:"(.*?)"/s', $inputString, $categoryMatch);
     $titleSlug = $titleMatch[1] ?? "";
     $metaDescription = $metaMatch[1] ?? "";
+    $category = $categoryMatch[1] ?? "";
 
     // var_dump($titleSlug);
     // var_dump($jsonContent);
@@ -37,6 +39,7 @@ function AVAGB_formatJsonString($inputString) {
     $finalJson = [
         "content" => $decodedJson,
         "titleSlug" => $titleSlug,
+        "category" => $category,
         "metadescription" => $metaDescription
     ];
 
