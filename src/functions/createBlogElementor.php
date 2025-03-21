@@ -108,13 +108,15 @@ function AVAGB_createBlogElementor($data) {
             wp_set_post_terms($post_id, [$new_category['term_id']], 'category');
         }
     }
-    update_post_meta($post_id, '_elementor_data', json_encode([[
+    $data_elementor = json_encode([[
         'id' => uniqid(),
         "elType"=> "container",
         "settings"=> [],
         "isInner"=> false,
         "elements"=>$elementor_data
-    ]],JSON_UNESCAPED_UNICODE));
+    ]],JSON_UNESCAPED_UNICODE);
+    echo($data_elementor);
+    update_post_meta($post_id, '_elementor_data', $data_elementor);
     
     update_post_meta($post_id, '_wp_page_template', 'elementor_theme');
     return $post_id;

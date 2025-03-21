@@ -13,6 +13,14 @@ function AVAGB_formatJsonString($inputString) {
         $jsonContent = preg_replace('/^json\s*/i', '', $jsonContent);
         $jsonContent = str_replace("```json", "", $jsonContent);
         $jsonContent = str_replace("```", "", $jsonContent);
+
+        $jsonContent = str_replace('=  "', '=\"', $jsonContent);
+        $jsonContent = str_replace('">', '\">', $jsonContent);
+        $jsonContent = str_replace('" target', '\" target', $jsonContent);  
+
+
+
+        $jsonContent = str_replace('\"', "'", $jsonContent);
     } else {
         throw new Exception("Error: No se encontró contenido JSON válido.");
     }
