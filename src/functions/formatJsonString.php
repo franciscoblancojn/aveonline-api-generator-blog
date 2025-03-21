@@ -15,6 +15,8 @@ function AVAGB_formatJsonString($inputString) {
         $jsonContent = str_replace("```", "", $jsonContent);
 
         $jsonContent = str_replace('=  "', '=\"', $jsonContent);
+        $jsonContent = str_replace('= "', '=\"', $jsonContent);
+        $jsonContent = str_replace('="', '=\"', $jsonContent);
         $jsonContent = str_replace('">', '\">', $jsonContent);
         $jsonContent = str_replace('" target', '\" target', $jsonContent);  
 
