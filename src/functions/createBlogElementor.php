@@ -115,7 +115,7 @@ function AVAGB_createBlogElementor($data) {
         "isInner"=> false,
         "elements"=>$elementor_data
     ]],JSON_UNESCAPED_UNICODE);
-    echo($data_elementor);
+    // echo($data_elementor);
     update_post_meta($post_id, '_elementor_data', $data_elementor);
     
     update_post_meta($post_id, '_wp_page_template', 'elementor_theme');

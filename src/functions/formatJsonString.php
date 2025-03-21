@@ -6,7 +6,7 @@ function AVAGB_formatJsonString($inputString) {
     $inputString = str_replace(['""'], '"', $inputString);
     $inputString = str_replace("\\", ' ', $inputString);
 
-
+    // var_dump($inputString);
     // Extraer el contenido JSON dentro de ```json ... ```
     if (preg_match('/content:"(.*?)"\s*,\s*titleSlug/s', $inputString, $matches)) {
         $jsonContent = trim($matches[1]);
@@ -18,13 +18,16 @@ function AVAGB_formatJsonString($inputString) {
         $jsonContent = str_replace('">', '\">', $jsonContent);
         $jsonContent = str_replace('" target', '\" target', $jsonContent);  
 
-
-
         $jsonContent = str_replace('\"', "'", $jsonContent);
+        if(substr($jsonContent, -1)!="]"){
+            $jsonContent .="]";
+        }
+        // var_dump($jsonContent);
     } else {
         throw new Exception("Error: No se encontró contenido JSON válido.");
     }
 
+        // var_dump(1);
     // var_dump($inputString);
     // Extraer titleSlug y metadescription
     preg_match('/titleSlug:"(.*?)"/s', $inputString, $titleMatch);
