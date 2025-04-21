@@ -5,10 +5,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function AVAGB_router_count_post(WP_REST_Request $request) {
     try {
         header('Content-Type: application/json; charset=utf-8');
+        $id = $request->get_param('id') ?: '';
+        $option_key = 'AVAGB_n_asesor_comercial_' . $id;
         $data = json_decode($request->get_body(),true);
         $n_asesor_comercial = $data['n_asesor_comercial'];
         
-        update_option('AVAGB_n_asesor_comercial',$n_asesor_comercial);
+        update_option($option_key,$n_asesor_comercial);
 
         echo wp_json_encode(array(
             "status" => 200,
@@ -26,7 +28,9 @@ function AVAGB_router_count_get(WP_REST_Request $request) {
     try {
         header('Content-Type: application/json; charset=utf-8');
 
-        $n_asesor_comercial = get_option('AVAGB_n_asesor_comercial',0);
+        $id = $request->get_param('id') ?: '';
+        $option_key = 'AVAGB_n_asesor_comercial_' . $id;
+        $n_asesor_comercial = get_option($option_key,0);
         
         echo wp_json_encode(array(
             "status" => 200,
